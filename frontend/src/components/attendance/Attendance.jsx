@@ -1,0 +1,139 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import axios from 'axios'
+import DataTable from 'react-data-table-component'
+import { AttendanceHelper,columns } from '../../utils/AttendanceHelper.jsx'
+const Attendance = () => {
+    const [attendance,setAttendance]=React.useState([]);
+    const [loading, setLoading] = React.useState(false);
+    const [filteredAttendance, setFilteredAttendance] = React.useState(null);
+    const statusChange = () =>{
+      fetchAttendance();
+    }
+    
+    const fetchAttendance = async () => {
+      setLoading(true);
+      try{
+        const response = await axios.get("http://localhost:5000/api/attendance",{
+          headers:{
+            "Authorization":`Bearer ${localStorage.getItem("token")}`
+          }
+        });
+        if(response.data.success){
+          let sno=1;
+          const data=await response.data.attendance.map((att)=>(
+            {
+              employeeId:att.employeeId.employeeId,
+              sno:sno++,
+              department: att.employeeId.department?.dep_name || "No Department",
+              name:att.employeeId.userId.name,
+              action:(<AttendanceHelper status={att.status} employeeId={att.employeeId.employeeId} statusChange={statusChange}/>)
+            }
+          ))
+          setAttendance(data);
+          setFilteredAttendance(data);
+          
+        }
+      }
+      catch(error){
+        if(error.response && !error.response.data.success){
+          alert(error.response.data.error);
+        }
+      }
+      finally{
+        setLoading(false);
+      }
+    };
+    useEffect(() => {
+    fetchAttendance();
+  }, []);
+    const styles = {
+    container: {
+      padding: "20px",
+        
+    },
+    titleWrapper: {
+      textAlign: "center",
+      marginBottom: "16px",
+    },
+    title: {
+      fontSize: "24px",
+      fontWeight: "700",
+    },
+    topBar: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginTop: "16px",
+    },
+    input: {
+      padding: "4px 16px",
+      border: "1px solid #ccc",
+      outline: "none",
+      fontSize: "14px",
+      marginBottom: "10px"
+    },
+    button: {
+      padding: "6px 16px",
+      backgroundColor: "#0d9488", // teal-600
+      color: "#ffffff",
+      borderRadius: "4px",
+      textDecoration: "none",
+      fontSize: "14px",
+      fontWeight: "500",
+      marginBottom: "10px"
+      
+    },
+    bottom:{
+      marginTop:"10px"
+    }
+  };
+  const customStyles = {
+  headCells: {
+    style: {
+      fontWeight: "700",   
+      fontSize: "14px",
+    },
+  },
+};
+  const handleFilter = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filtered = attendance.filter((emp) =>
+      emp.employeeId.toLowerCase().includes(searchTerm) ||
+      (emp.dep_name || "").toLowerCase().includes(searchTerm)
+    );
+    setFilteredAttendance(filtered);
+  };
+  if(!filteredAttendance){
+    return <div>Loading ...</div>
+  }
+
+  return (
+    <div style={styles.container}>
+        <div style={styles.titleWrapper}>
+        <h3 style={styles.title}>Manage Attendance</h3>
+      </div>
+
+      <div style={styles.topBar}>
+        <input
+          type="text"
+          placeholder="Search employees..."
+          onChange={handleFilter}
+          style={styles.input}
+        />
+        <p>
+          Mark Employees for {new Date().toISOString().split("T")[0]}{" "}
+        </p>
+
+        <Link to="/admin-dashboard/attendance-report" style={styles.button}>
+          Attendance Report
+        </Link>
+      </div>
+      <DataTable columns={columns} data={filteredAttendance} customStyles={customStyles} pagination/>
+      
+    </div>
+  )
+}
+
+export default Attendance;
