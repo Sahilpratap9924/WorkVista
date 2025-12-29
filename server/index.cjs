@@ -2,33 +2,34 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-
 const connectDB = require("./db/db.cjs");
 
-const authRoutes = require("./routes/auth.js");
-const departmentRoutes = require("./routes/Department.js");
-const employeeRoutes = require("./routes/employee.js");
-const salaryRoutes = require("./routes/salary.js");
-const leaveRoutes = require("./routes/leave.js");
-const settingRoutes = require("./routes/setting.js");
-const dashboardRoutes = require("./routes/dashboard.js");
-const attendanceRoutes = require("./routes/attendance.js");
-
 const app = express();
+
 connectDB();
 
-// middleware
 app.use(cors());
 app.use(express.json());
 
-// routes
-app.use("/api/auth", authRoutes);
-app.use("/api/departments", departmentRoutes);
-app.use("/api/employee", employeeRoutes);
-app.use("/api/salary", salaryRoutes);
-app.use("/api/leave", leaveRoutes);
-app.use("/api/setting", settingRoutes);
-app.use("/api/dashboard", dashboardRoutes);
-app.use("/api/attendance", attendanceRoutes);
+// 🔹 dynamically load ESM routes
+(async () => {
+  const { default: authRoutes } = await import("./routes/auth.js");
+  const { default: departmentRoutes } = await import("./routes/Department.js");
+  const { default: employeeRoutes } = await import("./routes/employee.js");
+  const { default: salaryRoutes } = await import("./routes/salary.js");
+  const { default: leaveRoutes } = await import("./routes/leave.js");
+  const { default: settingRoutes } = await import("./routes/setting.js");
+  const { default: dashboardRoutes } = await import("./routes/dashboard.js");
+  const { default: attendanceRoutes } = await import("./routes/attendance.js");
+
+  app.use("/api/auth", authRoutes);
+  app.use("/api/departments", departmentRoutes);
+  app.use("/api/employee", employeeRoutes);
+  app.use("/api/salary", salaryRoutes);
+  app.use("/api/leave", leaveRoutes);
+  app.use("/api/setting", settingRoutes);
+  app.use("/api/dashboard", dashboardRoutes);
+  app.use("/api/attendance", attendanceRoutes);
+})();
 
 module.exports = app;
