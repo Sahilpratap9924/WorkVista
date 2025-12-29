@@ -32,4 +32,9 @@ app.use(express.json());
   app.use("/api/attendance", attendanceRoutes);
 })();
 
+// optional health check
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok" });
+});
+
 module.exports = app;
