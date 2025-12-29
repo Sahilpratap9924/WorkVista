@@ -4,15 +4,18 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./db/db.cjs");
 
-const app = express();
+let app;
 
-connectDB();
+async function createApp() {
+  if (app) return app;
 
-app.use(cors());
-app.use(express.json());
+  const _app = express();
 
-// 🔹 dynamically load ESM routes
-(async () => {
+  await connectDB();
+
+  _app.use(cors());
+  _app.use(express.json());
+
   const { default: authRoutes } = await import("./routes/auth.js");
   const { default: departmentRoutes } = await import("./routes/Department.js");
   const { default: employeeRoutes } = await import("./routes/employee.js");
@@ -22,19 +25,24 @@ app.use(express.json());
   const { default: dashboardRoutes } = await import("./routes/dashboard.js");
   const { default: attendanceRoutes } = await import("./routes/attendance.js");
 
-  app.use("/api/auth", authRoutes);
-  app.use("/api/departments", departmentRoutes);
-  app.use("/api/employee", employeeRoutes);
-  app.use("/api/salary", salaryRoutes);
-  app.use("/api/leave", leaveRoutes);
-  app.use("/api/setting", settingRoutes);
-  app.use("/api/dashboard", dashboardRoutes);
-  app.use("/api/attendance", attendanceRoutes);
-})();
+  _app.use("/api/auth", authRoutes);
+  _app.use("/api/departments", departmentRoutes);
+  _app.use("/api/employee", employeeRoutes);
+  _app.use("/api/salary", salaryRoutes);
+  _app.use("/api/leave", leaveRoutes);
+  _app.use("/api/setting", settingRoutes);
+  _app.use("/api/dashboard", dashboardRoutes);
+  _app.use("/api/attendance", attendanceRoutes);
 
-// optional health check
-app.get("/api/health", (req, res) => {
-  res.json({ status: "ok" });
-});
+  _app.get("/api/health", (req, res) => {
+    res.json({ status: "ok" });
+  });
 
-module.exports = app;
+  app = _app;
+  return app;
+}
+
+module.exports = async (req, res) => {
+  const app = await createApp();
+  return app(req, res);
+};
