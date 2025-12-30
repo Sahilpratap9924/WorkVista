@@ -2,10 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 
-// DB
 import connectDB from "./db/db.mjs";
-
-// Routes
 import authRoutes from "./routes/auth.mjs";
 import departmentRoutes from "./routes/Department.mjs";
 import employeeRoutes from "./routes/employee.mjs";
