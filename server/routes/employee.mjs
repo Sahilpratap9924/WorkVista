@@ -7,7 +7,7 @@ import {
   getEmployee,
   updateEmployee,
   fetchEmployeesByDepId,
-} from "../controller/employeeController.js";
+} from "../controller/employeeController.mjs";
 const router = express.Router();
 router.post("/add", verifyUser, upload.single("profileImage"), addEmployee);
 router.get("/", verifyUser, getEmployees);
