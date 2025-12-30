@@ -1,4 +1,4 @@
-import Attendance from "../models/Attendance.js";
+import Attendance from "../models/Attendance.mjs";
 import Employee from "../models/Employee.mjs";
 
 const defaultAttendance = async (req, res, next) => {

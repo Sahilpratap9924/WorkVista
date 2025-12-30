@@ -1,4 +1,4 @@
-import Leave from "../models/Leave.js";
+import Leave from "../models/Leave.mjs";
 import Employee from "../models/Employee.mjs";
 
 const addLeave = async (req, res) => {

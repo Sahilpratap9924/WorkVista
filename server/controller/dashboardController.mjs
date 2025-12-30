@@ -1,7 +1,7 @@
-import Department from "../models/Department.js";
+import Department from "../models/Department.mjs";
 import Employee from "../models/Employee.mjs";
-import Leave from "../models/Leave.js";
-import Salary from "../models/Salary.js";
+import Leave from "../models/Leave.mjs";
+import Salary from "../models/Salary.mjs";
 
 const getSummary = async (req, res) => {
   try {

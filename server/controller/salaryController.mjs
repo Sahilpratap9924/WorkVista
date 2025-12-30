@@ -1,4 +1,4 @@
-import Salary from "../models/Salary.js";
+import Salary from "../models/Salary.mjs";
 import Employee from "../models/Employee.mjs";
 
 const addSalary = async (req, res) => {

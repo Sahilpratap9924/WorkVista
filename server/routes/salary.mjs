@@ -1,5 +1,5 @@
 import express from "express";
-import verifyUser from "../middleware/authMiddleware.js";
+import verifyUser from "../middleware/authMiddleware.mjs";
 import { addSalary, getSalary } from "../controller/salaryController.js";
 const router = express.Router();
 router.post("/add", verifyUser, addSalary);
