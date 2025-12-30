@@ -6,7 +6,7 @@ import {
   getLeaves,
   getLeaveDetail,
   updateLeave,
-} from "../controller/leaveController.js";
+} from "../controller/leaveController.mjs";
 const router = express.Router();
 router.post("/add", verifyUser, addLeave);
 router.get("/detail/:id", verifyUser, getLeaveDetail);
