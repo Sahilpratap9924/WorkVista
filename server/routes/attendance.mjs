@@ -3,7 +3,7 @@ import {
   attendanceReport,
   getAttendance,
   updateAttendance,
-} from "../controller/attendanceController.js";
+} from "../controller/attendanceController.mjs";
 import verifyUser from "../middleware/authMiddleware.mjs";
 import defaultAttendance from "../middleware/defaultAttendance.js";
 const router = express.Router();
