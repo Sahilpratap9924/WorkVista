@@ -41,7 +41,7 @@ export const AttendanceHelper = ({ status, employeeId, statusChange }) => {
   const markEmployee = async (newStatus) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/attendance/update/${employeeId}`,
+        `https://work-vista-lua88.vercel.app/api/attendance/update/${employeeId}`,
         { status: newStatus },
         {
           headers: {

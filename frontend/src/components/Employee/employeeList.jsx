@@ -28,7 +28,7 @@ const EmployeeList = () => {
               name:emp.userId.name,
               dob:new Date(emp.dob).toDateString(),
               profileImage:<img
-  src={`http://localhost:5000/uploads/${emp.userId.profileImage}`}
+  src={`https://work-vista-lua88.vercel.app/uploads/${emp.userId.profileImage}`}
   alt="Profile"
   style={{ width: "40px", height: "40px", borderRadius: "50%" }}
 />
