@@ -12,7 +12,7 @@ const Details = () => {
     const fetchLeave = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/leave/detail/${id}`,
+          `https://work-vista-lua88.vercel.app/api/leave/detail/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -123,7 +123,7 @@ const Details = () => {
 const changeStatus = async(id,status)=>{
     try {
         const response = await axios.put(
-          `http://localhost:5000/api/leave/${id}`,{status},
+          `https://work-vista-lua88.vercel.app/api/leave/${id}`,{status},
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -148,7 +148,7 @@ const changeStatus = async(id,status)=>{
           <div style={styles.grid}>
             <div>
               <img
-                src={`http://localhost:5000/uploads/${leave.employeeId.userId.profileImage}`}
+                src={`https://work-vista-lua88.vercel.app/uploads/${leave.employeeId.userId.profileImage}`}
                 alt="Employee"
                 style={styles.image}
               />

@@ -18,7 +18,7 @@ const Add = () => {
     e.preventDefault();
     try {
         const response = await axios.post(
-          `http://localhost:5000/api/leave/add`,leave,
+          `https://work-vista-lua88.vercel.app/api/leave/add`,leave,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

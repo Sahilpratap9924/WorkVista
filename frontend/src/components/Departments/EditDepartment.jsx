@@ -17,7 +17,7 @@ const EditDepartment = () => {
     const fetchDepartments = async () => {
       setDepLoading(true);
       try{
-        const response = await axios.get(`http://localhost:5000/api/departments/${id}`,{
+        const response = await axios.get(`https://work-vista-lua88.vercel.app/api/departments/${id}`,{
           headers:{
             "Authorization":`Bearer ${localStorage.getItem("token")}`
           }
@@ -103,7 +103,7 @@ const EditDepartment = () => {
     const handleSubmit=async (e)=>{
       e.preventDefault();
       try{
-          const response=await axios.put(`http://localhost:5000/api/departments/${id}`, department,{
+          const response=await axios.put(`https://work-vista-lua88.vercel.app/api/departments/${id}`, department,{
               headers:{
                   "Authorization":`Bearer ${localStorage.getItem("token")}`
               }

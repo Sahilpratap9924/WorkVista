@@ -10,7 +10,7 @@ const View = () => {
     const fetchEmployee = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/employee/${id}`,
+          `https://work-vista-lua88.vercel.app/api/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -76,7 +76,7 @@ const View = () => {
           <div style={styles.grid}>
             <div>
               <img
-                src={`http://localhost:5000/uploads/${employee.userId.profileImage}`}
+                src={`https://work-vista-lua88.vercel.app/uploads/${employee.userId.profileImage}`}
                 alt="Employee"
                 style={styles.image}
               />
