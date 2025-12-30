@@ -13,7 +13,7 @@ const Login=()=>{
         e.preventDefault();
         try{
             const response=await axios.post(
-                "http://localhost:5000/api/auth/login",
+                "https://work-vista-lua88.vercel.app/api/auth/login",
                 {email,password}
             );
             if(response.data.success){

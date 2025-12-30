@@ -40,7 +40,7 @@ export const columns = [
 export const fetchDepartments = async () => {
       let departments
       try{
-        const response = await axios.get("http://localhost:5000/api/departments",{
+        const response = await axios.get("https://work-vista-lua88.vercel.app/api/departments",{
           headers:{
             "Authorization":`Bearer ${localStorage.getItem("token")}`
           }

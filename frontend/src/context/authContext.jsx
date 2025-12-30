@@ -14,7 +14,7 @@ const AuthContext = ({ children }) => {
             setLoading(false)
             return;
           }
-          const response=await axios.get("http://localhost:5000/api/auth/verify",{
+          const response=await axios.get("https://work-vista-lua88.vercel.app/api/auth/verify",{
             headers:{
               "Authorization":`Bearer ${token}`
 

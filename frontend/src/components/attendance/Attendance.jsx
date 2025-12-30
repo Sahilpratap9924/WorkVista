@@ -15,7 +15,7 @@ const Attendance = () => {
     const fetchAttendance = async () => {
       setLoading(true);
       try{
-        const response = await axios.get("http://localhost:5000/api/attendance",{
+        const response = await axios.get("https://work-vista-lua88.vercel.app/api/attendance",{
           headers:{
             "Authorization":`Bearer ${localStorage.getItem("token")}`
           }

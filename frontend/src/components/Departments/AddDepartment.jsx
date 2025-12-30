@@ -73,7 +73,7 @@ const AddDepartment = () => {
   const handleSubmit=async (e)=>{
     e.preventDefault();
     try{
-        const response=await axios.post("http://localhost:5000/api/departments/add", Department,{
+        const response=await axios.post("https://work-vista-lua88.vercel.app/api/departments/add", Department,{
             headers:{
                 "Authorization":`Bearer ${localStorage.getItem("token")}`
             }

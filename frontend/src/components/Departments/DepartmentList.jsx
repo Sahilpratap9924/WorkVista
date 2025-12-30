@@ -14,7 +14,7 @@ const DepartmentList = () => {
   const fetchDepartments = async () => {
       setDepLoading(true);
       try{
-        const response = await axios.get("http://localhost:5000/api/departments",{
+        const response = await axios.get("https://work-vista-lua88.vercel.app/api/departments",{
           headers:{
             "Authorization":`Bearer ${localStorage.getItem("token")}`
           }

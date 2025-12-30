@@ -86,7 +86,7 @@ const AddEmployee = () => {
 
     try{
             const response = await axios.post(
-  "http://localhost:5000/api/employee/add",
+  "https://work-vista-lua88.vercel.app/api/employee/add",
   formDataobj,
   {
     headers: {

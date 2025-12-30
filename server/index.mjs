@@ -16,7 +16,12 @@ const app = express();
 
 await connectDB();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://work-vista-rx7j.vercel.app",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
