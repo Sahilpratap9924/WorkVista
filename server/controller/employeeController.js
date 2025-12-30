@@ -1,5 +1,5 @@
-import Employee from "../models/Employee.js";
-import User from "../models/User.js";
+import Employee from "../models/Employee.mjs";
+import User from "../models/user.mjs";
 import bcrypt from "bcrypt";
 import multer from "multer";
 import path from "path";

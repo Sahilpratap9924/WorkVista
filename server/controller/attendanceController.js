@@ -1,5 +1,5 @@
 import Attendance from "../models/Attendance.js";
-import Employee from "../models/Employee.js";
+import Employee from "../models/Employee.mjs";
 
 const getAttendance = async (req, res) => {
   try {

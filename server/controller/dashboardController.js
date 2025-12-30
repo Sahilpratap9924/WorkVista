@@ -1,5 +1,5 @@
 import Department from "../models/Department.js";
-import Employee from "../models/Employee.js";
+import Employee from "../models/Employee.mjs";
 import Leave from "../models/Leave.js";
 import Salary from "../models/Salary.js";
 

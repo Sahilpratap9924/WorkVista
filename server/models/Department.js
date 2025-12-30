@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import Employee from "./Employee.js";
+import Employee from "./Employee.mjs";
 import Leave from "./Leave.js";
 import Salary from "./Salary.js";
-import User from "./User.js";
+import User from "./user.mjs";
 
 const departmentSchema = new mongoose.Schema({
   dep_name: { type: String, required: true },
