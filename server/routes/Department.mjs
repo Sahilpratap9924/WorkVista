@@ -6,7 +6,7 @@ import {
   getDepartment,
   updateDepartment,
   deleteDepartment,
-} from "../controller/departmentController.js";
+} from "../controller/departmentController.mjs";
 const router = express.Router();
 router.post("/add", verifyUser, addDepartment);
 router.get("/", verifyUser, getDepartments);
