@@ -1,7 +1,7 @@
 import "dotenv/config";
 import user from "./models/user.js";
 import bcrypt from "bcrypt";
-import connectDB from "./db/db.js";
+import connectDB from "./db/db.mjs";
 
 const userRegister = async () => {
   await connectDB();
