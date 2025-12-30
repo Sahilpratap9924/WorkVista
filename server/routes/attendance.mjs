@@ -5,7 +5,7 @@ import {
   updateAttendance,
 } from "../controller/attendanceController.mjs";
 import verifyUser from "../middleware/authMiddleware.mjs";
-import defaultAttendance from "../middleware/defaultAttendance.js";
+import defaultAttendance from "../middleware/defaultAttendance.mjs";
 const router = express.Router();
 router.get("/", verifyUser, defaultAttendance, getAttendance);
 router.put("/update/:employeeId", verifyUser, updateAttendance);
