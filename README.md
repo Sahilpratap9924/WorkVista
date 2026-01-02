@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 # 🏢 WorkSphere – Employee Management System
 
 A full-stack **Employee Management System** built using **React, Node.js, Express, and MongoDB**.  
@@ -53,15 +54,13 @@ cd frontend
 npm install
 npm run dev
 
-Frontend runs on:
-http://localhost:5173
-
-Backend runs on:
-http://localhost:5000
-
 
 ```
+
 =======
+
 # WorkVista
+
 this is an employee management system
->>>>>>> 0134cbdc8029d64cddf9b2f2028ae2f43f25c194
+
+> > > > > > > 0134cbdc8029d64cddf9b2f2028ae2f43f25c194
