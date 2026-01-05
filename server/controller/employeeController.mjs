@@ -14,6 +14,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 const addEmployee = async (req, res) => {
   try {
+    // 🔍 DEBUG (keep for now)
+    console.log("BODY:", req.body);
+    console.log("FILE:", req.file);
+
     const {
       name,
       email,
@@ -27,24 +31,35 @@ const addEmployee = async (req, res) => {
       password,
       role,
     } = req.body;
-    const user = await User.findOne({ email });
-    if (user) {
-      return res
-        .status(400)
-        .json({ success: false, error: "user already registered in emp" });
+
+    // 🛑 safety check
+    if (!name || !email || !role || !password) {
+      return res.status(400).json({
+        success: false,
+        error: "Required fields missing",
+      });
     }
 
-    const rawPassword = password || "Employee@123";
-    const hashPassword = await bcrypt.hash(rawPassword, 10);
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        error: "User already exists",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
       name,
       email,
-      password: hashPassword,
+      password: hashedPassword,
       role,
-      profileImage: req.file ? req.file.filename : "",
+      profileImage: req.file ? req.file.filename : "", // ✅ image optional
     });
+
     const savedUser = await newUser.save();
+
     const newEmployee = new Employee({
       userId: savedUser._id,
       employeeId,
@@ -55,36 +70,22 @@ const addEmployee = async (req, res) => {
       department,
       salary,
     });
+
     await newEmployee.save();
+
     return res.status(200).json({
       success: true,
       message: "Employee added successfully",
     });
   } catch (error) {
     console.error("ADD EMPLOYEE ERROR:", error);
-
-    // mongoose validation error
-    if (error.name === "ValidationError") {
-      return res.status(400).json({
-        success: false,
-        error: error.message,
-      });
-    }
-
-    // duplicate key error (email / employeeId)
-    if (error.code === 11000) {
-      return res.status(400).json({
-        success: false,
-        error: "Email or Employee ID already exists",
-      });
-    }
-
     return res.status(500).json({
       success: false,
       error: error.message,
     });
   }
 };
+
 const getEmployees = async (req, res) => {
   try {
     const employees = await Employee.find()

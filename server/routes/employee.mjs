@@ -10,7 +10,7 @@ import {
 
 const router = express.Router();
 
-router.post("/add", verifyUser, addEmployee);
+router.post("/add", upload.single("profileImage"), verifyUser, addEmployee);
 
 router.get("/department/:id", verifyUser, fetchEmployeesByDepId);
 
