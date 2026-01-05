@@ -67,7 +67,7 @@ const AddEmployee = () => {
   if (files) {
     setFormData((prevData) => ({
       ...prevData,
-      [name]: files[0], // profileImage
+      [name]: files[0],
     }));
   } else {
     setFormData((prevData) => ({
@@ -91,7 +91,6 @@ const AddEmployee = () => {
   {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "multipart/form-data",
     },
   }
 );
@@ -144,7 +143,7 @@ const AddEmployee = () => {
           <div>
             <label style={styles.label}>Gender</label>
             <select style={styles.input} name="gender" onChange={handleChange} required>
-              <option>Select Gender</option>
+              <option value="" disabled>Select Gender</option>
               <option>Male</option>
               <option>Female</option>
               <option>Other</option>
@@ -154,7 +153,7 @@ const AddEmployee = () => {
           <div>
             <label style={styles.label}>Marital Status</label>
             <select style={styles.input} name="maritalStatus" placeholder="Marital Status" onChange={handleChange} required>
-              <option>Select Marital Status</option>
+              <option value="" disabled>Select Marital Status</option>
               <option>Single</option>
               <option>Married</option>
               <option>Divorced</option>
@@ -169,7 +168,7 @@ const AddEmployee = () => {
           <div>
             <label style={styles.label} >Department</label>
             <select style={styles.input} name="department" onChange={handleChange} required>
-              <option value="">Select Department</option>
+              <option value="" disabled>Select Department</option>
               {departments.map(dep=>(
                 <option key={dep._id} value={dep._id}>{dep.dep_name}</option>
               ))}
@@ -189,7 +188,7 @@ const AddEmployee = () => {
           <div>
             <label style={styles.label}>Role</label>
             <select style={styles.input} name="role" onChange={handleChange} required>
-              <option value="">Select Role</option>
+              <option value="" disabled>Select Role</option>
               <option value="admin">Admin</option>
               <option value="employee">Employee</option>
 
