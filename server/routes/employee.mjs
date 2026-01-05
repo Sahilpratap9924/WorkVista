@@ -4,6 +4,7 @@ import {
   addEmployee,
   getEmployees,
   getEmployee,
+  upload,
   updateEmployee,
   fetchEmployeesByDepId,
 } from "../controller/employeeController.mjs";
