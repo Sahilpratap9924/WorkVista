@@ -139,7 +139,7 @@ const Add = () => {
             <select style={styles.input} name="employeeId" onChange={handleChange} required>
               <option value="">Select Employee</option>
               {employees.map(emp=>(
-                <option key={emp._id} value={emp._id}>{emp.employeeId}</option>
+                <option key={emp._id} value={emp._id}>{emp.userId?.name || emp.employeeId}</option>
               ))}
             </select>
             </div>
