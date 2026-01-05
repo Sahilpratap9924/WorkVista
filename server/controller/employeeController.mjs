@@ -1,7 +1,6 @@
 import Employee from "../models/Employee.mjs";
 import User from "../models/user.mjs";
 import bcrypt from "bcrypt";
-import multer from "multer";
 import path from "path";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -34,7 +33,9 @@ const addEmployee = async (req, res) => {
         .json({ success: false, error: "user already registered in emp" });
     }
 
-    const hashPassword = await bcrypt.hash(password, 10);
+    const rawPassword = password || "Employee@123";
+    const hashPassword = await bcrypt.hash(rawPassword, 10);
+
     const newUser = new User({
       name,
       email,
