@@ -1,6 +1,7 @@
 import Employee from "../models/Employee.mjs";
 import User from "../models/user.mjs";
 import bcrypt from "bcrypt";
+import multer from "multer";
 import path from "path";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
