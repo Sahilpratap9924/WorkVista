@@ -29,7 +29,7 @@ const addEmployee = async (req, res) => {
       password,
       role,
     } = req.body;
-    const salary = Number(req.body.salary),
+    const salary = Number(req.body.salary);
 
     if (!name || !email || !role || !password) {
       return res.status(400).json({
@@ -53,7 +53,7 @@ const addEmployee = async (req, res) => {
       email,
       password: hashedPassword,
       role,
-      profileImage: req.file ? req.file.filename : "", 
+      profileImage: req.file ? req.file.filename : "",
     });
 
     const savedUser = await newUser.save();
