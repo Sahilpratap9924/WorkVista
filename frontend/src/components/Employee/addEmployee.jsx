@@ -5,7 +5,10 @@ import { useNavigate } from "react-router-dom";
 const AddEmployee = () => {
     const navigate=useNavigate();
     const [departments,setDepartments]=useState([])
-    const [formData,setFormData]=useState({})
+    const [formData, setFormData] = useState({
+  department: "",
+});
+
     useEffect(() => {
         const getDepartments=async ()=>{
         const departments= await fetchDepartments()
@@ -144,9 +147,10 @@ const AddEmployee = () => {
             <label style={styles.label}>Gender</label>
             <select style={styles.input} name="gender" onChange={handleChange} required>
               <option value="" disabled>Select Gender</option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Other</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+
             </select>
           </div>
 
@@ -167,7 +171,8 @@ const AddEmployee = () => {
 
           <div>
             <label style={styles.label} >Department</label>
-            <select style={styles.input} name="department" onChange={handleChange} required>
+            <select style={styles.input} name="department" value={formData.department} onChange={handleChange} required>
+
               <option value="" disabled>Select Department</option>
               {departments.map(dep=>(
                 <option key={dep._id} value={dep._id}>{dep.dep_name}</option>

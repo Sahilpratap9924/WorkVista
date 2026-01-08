@@ -14,7 +14,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 const addEmployee = async (req, res) => {
   try {
-    // 🔍 DEBUG (keep for now)
     console.log("BODY:", req.body);
     console.log("FILE:", req.file);
 
