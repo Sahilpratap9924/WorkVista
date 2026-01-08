@@ -146,7 +146,7 @@ const AddEmployee = () => {
           <div>
             <label style={styles.label}>Gender</label>
             <select style={styles.input} name="gender" onChange={handleChange} required>
-              <option value="" disabled>Select Gender</option>
+              <option value="">Select Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other</option>
@@ -157,10 +157,10 @@ const AddEmployee = () => {
           <div>
             <label style={styles.label}>Marital Status</label>
             <select style={styles.input} name="maritalStatus" placeholder="Marital Status" onChange={handleChange} required>
-              <option value="" disabled>Select Marital Status</option>
-              <option>Single</option>
-              <option>Married</option>
-              <option>Divorced</option>
+            <option value="">Select Marital Status</option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Divorced">Divorced</option>
             </select>
           </div>
 
@@ -173,7 +173,7 @@ const AddEmployee = () => {
             <label style={styles.label} >Department</label>
             <select style={styles.input} name="department" value={formData.department} onChange={handleChange} required>
 
-              <option value="" disabled>Select Department</option>
+              <option value="">Select Department</option>
               {departments.map(dep=>(
                 <option key={dep._id} value={dep._id}>{dep.dep_name}</option>
               ))}
