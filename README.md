@@ -63,4 +63,9 @@ npm run dev
 
 this is an employee management system
 
+# vercel setup
+# admin login
+email:admin@gmail.com
+pass:123456
+
 > > > > > > > 0134cbdc8029d64cddf9b2f2028ae2f43f25c194
