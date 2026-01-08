@@ -26,12 +26,11 @@ const addEmployee = async (req, res) => {
       maritalStatus,
       designation,
       department,
-      salary = Number(req.body.salary),
       password,
       role,
     } = req.body;
+    const salary = Number(req.body.salary),
 
-    // 🛑 safety check
     if (!name || !email || !role || !password) {
       return res.status(400).json({
         success: false,
@@ -54,7 +53,7 @@ const addEmployee = async (req, res) => {
       email,
       password: hashedPassword,
       role,
-      profileImage: req.file ? req.file.filename : "", // ✅ image optional
+      profileImage: req.file ? req.file.filename : "", 
     });
 
     const savedUser = await newUser.save();
@@ -67,7 +66,7 @@ const addEmployee = async (req, res) => {
       maritalStatus,
       designation,
       department,
-      salary: salary,
+      salary,
     });
 
     await newEmployee.save();
