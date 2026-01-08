@@ -26,7 +26,7 @@ const addEmployee = async (req, res) => {
       maritalStatus,
       designation,
       department,
-      salary,
+      salary = Number(req.body.salary),
       password,
       role,
     } = req.body;
@@ -67,7 +67,7 @@ const addEmployee = async (req, res) => {
       maritalStatus,
       designation,
       department,
-      salary,
+      salary: salary,
     });
 
     await newEmployee.save();
